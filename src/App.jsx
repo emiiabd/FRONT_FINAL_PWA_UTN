@@ -11,9 +11,9 @@ function App() {
     <ParallaxProvider scrollAxis='vertical'> 
     <Routes>
       <Route path="/" element={<Home/>} />
-      <Route path="/Contact" element={<Contact/>} />
-      <Route path="/AboutUs" element={<AboutUs/>} />
-      <Route path="/Login" element={<Login/>} />
+      <Route path="/contact" element={<Contact/>} />
+      <Route path="/aboutUs" element={<AboutUs/>} />
+      <Route path="/login" element={<Login/>} />
       <Route element={<ProtectedRoute />}>
         <Route path='/log/s101/battery' element={<BatteryAlert/>} />
         <Route path='/log/s101/paymentPending' element={<PaymentPending/>} />
