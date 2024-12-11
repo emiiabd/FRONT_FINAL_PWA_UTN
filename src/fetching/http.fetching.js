@@ -21,8 +21,8 @@ const POST = async (ENDPOINT, body) => {
       headers: getHeaders(),
       body: JSON.stringify(body)
     });
-    
-    return response;
+    const res = await response.json()
+    return res;
   } catch (error) {
     console.log(error)
     throw error;

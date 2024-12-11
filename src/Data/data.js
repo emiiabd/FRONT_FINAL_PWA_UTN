@@ -1,6 +1,6 @@
 const ENVIROMENT = {
   URL_FRONT: "http://localhost:5173",
-  URL_BACK: "back-final-pwa-utn.vercel.app",
+  URL_BACK: "https://back-final-pwa-utn.vercel.app",
   G_MAPS_API_KEY: 'AIzaSyDho985O13eR1wkuDX00c2vWwkA8xabyCc',
   G_CAPTCHA_API_KEY: '6LeezH0qAAAAAImjUoIqHzED8LdLmJHIwQAd1wzM' 
 }

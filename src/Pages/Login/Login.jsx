@@ -33,7 +33,7 @@ const Login = () => {
       }
       const response = await POST(`api/auth/login`, loginForm)
 
-      console.log(response.message)
+      console.log(response)
       if (!response.ok) throw response
       
       const acces_token = response.payload.token
