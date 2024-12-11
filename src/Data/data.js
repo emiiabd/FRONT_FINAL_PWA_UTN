@@ -1,5 +1,4 @@
 
-
 const ENVIROMENT = {
   URL_FRONT: "http://localhost:5173",
   URL_BACK: `https://back-final-pwa-utn.vercel.app`,
@@ -16,7 +15,7 @@ const INFODATA = {
     HOME: {
       title: "Sistemas de alarmas y videovigilancia",
       text: "Tu seguridad es nuestra misión.",
-      btn: "Perdir cotización"
+      btn: "Pedir cotización"
     },
     CONTACT: {
       title: "Contacto",

@@ -1,16 +1,28 @@
 import React, { useEffect, useRef } from 'react';
 import { useJsApiLoader } from '@react-google-maps/api';
 import { ENVIROMENT } from '../../Data/data';
+import { getGMAPS } from '../../fetching/http.fetching';
 
-const libraries = ['places'];
-
-const handlePlaceSelected = (place) => {
-  console.log(place.url);
-}
 
 const MapAutocompleteComponent = () => {
+  const libraries = ['places'];
+  
+  const handlePlaceSelected = (place) => {
+    console.log(place.url);
+  }
+  
+  let G_MAPS_API_KEY = ''
+
+  useEffect(() => {
+    const getKey = async () => {
+      G_MAPS_API_KEY = await getGMAPS()
+    }
+    getKey()
+  }, [])
+
+
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: ENVIROMENT.G_MAPS_API_KEY, // put your API key here
+    googleMapsApiKey: G_MAPS_API_KEY, // put your API key here
     libraries,
     language: 'es',
     region: 'ar',
