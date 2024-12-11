@@ -76,13 +76,11 @@ try{
   method: 'GET',
   headers: getHeaders(),
   })
-
   return response.json()
 }
 catch(error){
   throw error
 }
-
 }
 
 export { POST, GET, DELETE, PUT, getGMAPS}

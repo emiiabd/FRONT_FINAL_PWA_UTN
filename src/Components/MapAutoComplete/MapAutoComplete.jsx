@@ -15,12 +15,15 @@ const MapAutocompleteComponent = () => {
 
   useEffect(() => {
     const getKey = async () => {
-      G_MAPS_API_KEY = await getGMAPS()
+      const response = await getGMAPS()
+      console.log(response.payload)
+      if(response.ok) G_MAPS_API_KEY = response.payload.key
     }
     getKey()
   }, [])
 
 
+  console.log(G_MAPS_API_KEY)
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: G_MAPS_API_KEY, // put your API key here
     libraries,
