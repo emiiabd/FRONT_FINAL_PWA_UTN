@@ -33,6 +33,7 @@ const Login = () => {
       }
       const response = await POST(`api/auth/login`, loginForm)
 
+      console.log(response)
       if (!response.ok) throw response
       
       const acces_token = response.payload.token
@@ -44,6 +45,7 @@ const Login = () => {
         ...response.payload.user,
         ...person.payload
       }
+
       sessionStorage.setItem('username', JSON.stringify(username))
       setUser(username)
       getter()

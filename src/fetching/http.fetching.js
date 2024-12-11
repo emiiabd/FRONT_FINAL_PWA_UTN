@@ -23,6 +23,7 @@ const POST = async (ENDPOINT, body) => {
     });
     return response.json();
   } catch (error) {
+    console.log(error)
     throw error;
   }
 }
