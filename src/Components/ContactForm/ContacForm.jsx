@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import './ContacForm.css'
 import MapAutocompleteComponent from "../MapAutoComplete/MapAutoComplete";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -6,9 +6,11 @@ import { ENVIROMENT, FORM_SCHEMA } from "../../Data/data";
 import useForm from "../../Hooks/useForm";
 import { useGlobalContext } from "../../Context/GlobalContext";
 import { Alert } from "react-bootstrap";
+import { GET } from "../../fetching/http.fetching";
 
-const   ContacForm = ({ title, spanTitle}) => {
-
+const ContacForm = ({ title, spanTitle}) => {
+  const [apiKeyGM, setApiKeyGM] = useState('')
+  const [apiKeyGC, setApiKeyGC] = useState('')
   const recaptchaRef = useRef(null);
   const { errorsValues } = useGlobalContext();
   //Schema
@@ -17,12 +19,22 @@ const   ContacForm = ({ title, spanTitle}) => {
   const contactSchema = getForm();
   const validationContact = getValidateSchema();
   
+  useEffect(() => {
+    const getKey = async () => {
+      const GM_api = await GET('api/frontENV/GM-ak')
+      const GC_api = await GET('api/frontENV/GC-ak')
+  
+      if(GM_api.ok) setApiKeyGM(GM_api.payload.api_key)
+      if(GC_api.ok) setApiKeyGC(GC_api.payload.api_key)
+    }
+    getKey()
+  }, [])
 
   const renderForm = [];
   for(const prop in contactSchema){
-    if(prop == 'location'){
+    if(prop == 'location' && apiKeyGM){
       renderForm.push(
-        <MapAutocompleteComponent key={prop}/>
+        <MapAutocompleteComponent key={prop} apiKey={apiKeyGM}/>
       );
     }
     else if(prop == 'commentBox'){
@@ -95,12 +107,17 @@ const   ContacForm = ({ title, spanTitle}) => {
       {/* Inputs */}
       {renderForm}
       {/* ReCAPTCHA */}
-      <ReCAPTCHA
+
+      {
+        apiKeyGC
+        &&
+        <ReCAPTCHA
         ref={recaptchaRef}
-        sitekey={ENVIROMENT.G_CAPTCHA_API_KEY}
+        sitekey={apiKeyGC}
         className="mb-3 d-flex justify-content-center"
         hl="es"
-      />
+        />
+      }
       {
         errorsValues.map((i, index) => {
           if(i){

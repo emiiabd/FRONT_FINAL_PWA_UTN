@@ -70,17 +70,4 @@ const PUT = async (ENDPOINT, body) => {
   }
 }
 
-const getGMAPS = async () => {
-try{
-  const response = await fetch(`${URL_BACK}/api/frontENV/GM-ak`, {
-  method: 'GET',
-  headers: getHeaders(),
-  })
-  return response.json()
-}
-catch(error){
-  throw error
-}
-}
-
-export { POST, GET, DELETE, PUT, getGMAPS}
+export { POST, GET, DELETE, PUT}

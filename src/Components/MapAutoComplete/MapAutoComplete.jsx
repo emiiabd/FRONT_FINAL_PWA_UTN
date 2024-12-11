@@ -1,31 +1,16 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useJsApiLoader } from '@react-google-maps/api';
-import { ENVIROMENT } from '../../Data/data';
-import { getGMAPS } from '../../fetching/http.fetching';
 
+const libraries = ['places'];
 
-const MapAutocompleteComponent = () => {
-  const libraries = ['places'];
+const MapAutocompleteComponent = ({apiKey}) => {
   
   const handlePlaceSelected = (place) => {
     console.log(place.url);
   }
-  
-  let G_MAPS_API_KEY = ''
 
-  useEffect(() => {
-    const getKey = async () => {
-      const response = await getGMAPS()
-      console.log(response.payload)
-      if(response.ok) G_MAPS_API_KEY = response.payload.key
-    }
-    getKey()
-  }, [])
-
-
-  console.log(G_MAPS_API_KEY)
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: G_MAPS_API_KEY, // put your API key here
+    googleMapsApiKey: apiKey, // put your API key here
     libraries,
     language: 'es',
     region: 'ar',
@@ -38,7 +23,7 @@ const MapAutocompleteComponent = () => {
   useEffect(() => {
     if (isLoaded && inputRef.current) {
       autocomplete.current = new window.google.maps.places.Autocomplete(inputRef.current, {
-        types: ['route'], // Change this to fit your needs
+        types: ['route']
       });
 
       autocomplete.current.addListener('place_changed', () => {

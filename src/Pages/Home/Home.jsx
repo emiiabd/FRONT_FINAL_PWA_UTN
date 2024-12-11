@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {ContacForm, Footer, Maps, NavBar, PresentationBanner, CardsHome, WhyUsHome, ValuesHome, OurClients} from "../../Components";
 import "./home.css";
@@ -6,6 +6,8 @@ import { ParallaxBanner } from 'react-scroll-parallax'
 
 const Home = () => {
   const navigate = useNavigate();
+  
+
   const handlePlaceSelected = (place) => {
     if (place.geometry) {
       console.log("Place details:", place);
@@ -14,6 +16,8 @@ const Home = () => {
       console.log("No details available for input:", place.name);
     }
   };
+
+
 
 
   return (
