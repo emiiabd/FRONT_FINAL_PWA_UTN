@@ -107,7 +107,6 @@ const ContacForm = ({ title, spanTitle}) => {
       {/* Inputs */}
       {renderForm}
       {/* ReCAPTCHA */}
-
       {
         apiKeyGC
         &&

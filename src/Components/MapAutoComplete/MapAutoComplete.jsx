@@ -6,11 +6,13 @@ const libraries = ['places'];
 const MapAutocompleteComponent = ({apiKey}) => {
   
   const handlePlaceSelected = (place) => {
+    console.log(place);
+    console.log(place.formatted_address);
     console.log(place.url);
   }
 
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: apiKey, // put your API key here
+    googleMapsApiKey: apiKey,
     libraries,
     language: 'es',
     region: 'ar',
