@@ -31,7 +31,7 @@ const NavBar = ({of}) => {
       user.role == 'admin' &&  
       <NavDropdown
         id="nav-dropdown-dark-example"
-        title={user.name && user.name.toUpperCase()}
+        title={user.username && user.username.toUpperCase()}
         data-bs-theme="light"
         key={4}
         className="nav-link btn btn-secondary"
